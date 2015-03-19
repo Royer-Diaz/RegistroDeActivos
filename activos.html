@@ -10,7 +10,7 @@
  </head>
  <body class="container">
  	<header>
- 		
+
  	</header>
  	<div class="container">
  	 <div id="content">
@@ -19,42 +19,134 @@
          <div class="row">
           <div class="col-md-6">
 
-         	
+            <div id="form-container">
+              <form class="form-horizontal well bs-component col-lg-6" id="form-vehiculo">
+
+                <fieldset>
+                  <div class="form-group">
+                    <label for="select-tipo" class="col-lg-3 control-label">Tipo</label>
+                    <div class="col-lg-9">
+                      <select class="form-control" id="select-tipo">
+                      <option value="computadoras">Computadoras</option>
+                      <option value="moviles">M&oacute;viles</option>
+                      <option value="otros">Otros</option>
+                      </select>
+                    </div>
+                  </div>
+                </fieldset>  
+                <fieldset>
+
+computadoras: detalle sobre OS, Tipo(laptop o desktop), Pantallas Anexadas(tomando en cuenta que la Laptop tiene una ya!!)
+
+
+Dispositivos Moviles:OS, Smartphone o tablet, Soporta Sim?
+
+Otros: Nombre, bloque de informacion.
+
+
+
+                  <div class="form-group">
+                    <label for="input-marca" class="col-lg-3 control-label">Marca</label>
+                    <div class="col-lg-9">
+                      <input type="text" class="form-control" id="input-marca">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="input-modelo" class="col-lg-3 control-label">Modelo</label>
+                    <div class="col-lg-9">
+                      <input type="text" class="form-control" id="input-modelo">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="input-color" class="col-lg-3 control-label">Color</label>
+                    <div class="col-lg-9">
+                      <input type="text" class="form-control" id="input-color">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="input-serie" class="col-lg-3 control-label">N&uacute;mero Serie</label>
+                    <div class="col-lg-9">
+                      <input type="text" class="form-control" id="input-serie">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="input-cilindraje" class="col-lg-3 control-label">Cilindraje</label>
+                    <div class="col-lg-9">
+                      <input type="text" class="form-control" id="input-cilindraje">
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="form-group">
+                    <div class="col-lg-6 col-lg-offset-6">
+                      <a class="btn btn-primary col-lg-5 col-lg-offset-1" href="javascript:;" id="submit-vehiculo">Crear</a>
+                      <a class="btn btn-default col-lg-5 col-lg-offset-1" href="javascript:;" id="cancel-vehiculo">Cancelar</a>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+
+              <p><a id="crear-vehiculo" href="javascript:;" class="btn btn-primary">Crear Vehículo</a></p>
+
+            </div>
 
 
 
 
-      
+
+
+
+
               <div class="actionButtons">
                 <button type="button" class="btn btn-success">+ Add</button>
                 <button type="button" class="btn btn-danger">Reset</button>
               </div>
-          </div> 
-          <div class="col-md-6">    
+          </div>
+          <div class="col-md-6">
  	      </div>
          </div>
  	    </div>
  	    <div id="cadaActivo-tab" class="conteiner-fluid">
- 	     <div class="row">
- 	     <div class="col-md-6">
-
-         	
-
-
-
-
-      
-              <div class="actionButtons">
-                <button type="button" class="btn btn-success">+ Add</button>
-                <button type="button" class="btn btn-danger">Reset</button>
-              </div>
-          </div> 
-          <div class="col-md-6">    
- 	      </div>
-         </div>
-
- 	     </div>	
- 	    </div>
+          <div class="row">
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+          </div>
+        </div>
+          <div class="col-md-6">
+ 	        </div>
+      </div>
  	  </div>
  	 </div>
  	</div>
