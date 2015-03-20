@@ -1,7 +1,12 @@
 /*Stylos de la pagina*/
 
+html{
+  background: transparent url("../img/bk-eco.jpg") repeat;
+}
 
-
+body{
+  background: transparent url("../img/bk-eco-ga.jpg") repeat;
+}
 
 header {
 	height: 300px;
@@ -29,3 +34,21 @@ footer {
   width: 1140px;
   float: left;
 }
+
+
+/*Formulario versatil*/
+
+#computadora-fs {
+   display: none;
+}
+#movil-fs {
+   display: none;
+}
+#otros-fs {
+   display: none;
+}
+
+
+
+
+
