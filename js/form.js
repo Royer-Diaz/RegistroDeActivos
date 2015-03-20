@@ -9,8 +9,14 @@ var verDetalleArticulo = function(){
   jQuery('#slider').animate({'margin-left': '-1148px'}, 500);
 };
 
-var resetAllPurchase = function(){
-  $('input').html('');	
+var volverPantallaInicio = function(){
+  jQuery('#slider').animate({'margin-left': '0px'}, 500);
+};
+
+var resetearInputs = function(){
+  $('input').val('');	
+  $('textarea ').val('');	
+  ocultarFormulario();
 };
 
 var resetAllJavascript = function(){
@@ -41,17 +47,25 @@ var toggleSelectionForm = function(){
 
 //Event Listeners
 $(document).ready(function (){
+
 	$('#select-tipo').click( function(){
 		toggleSelectionForm();
 	});
 	$('.view').click(function(){
         verDetalleArticulo();
 	});
-	$('.reset').click(function(){
-        resetAllPurchase();
+	$('#resetear').click(function(){
+        resetearInputs();
 	});
     $('.restart').click(function(){
-        restar
+        resetAllJavascript();
     });
+    $('.volver').click(function(){
+        volverPantallaInicio();
+    });
+    $('.borrar-articulo').click(function(){
+        borrarObjeto();
+    });
+
 
 });

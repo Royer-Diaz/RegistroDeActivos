@@ -53,6 +53,24 @@
 								               <!--Computadoras: detalle sobre OS, Tipo(laptop o desktop), Pantallas Anexadas(tomando en cuenta que la Laptop tiene una ya!!)-->
 								               <div id="computadora-fs" class="container">
 								                 <fieldset>
+								                      <div class="form-group">
+										                 <label for="input-nombre-compu" class="col-sm-2 control-label">Nombre</label>
+										                 <div class="col-sm-2">
+										                     <input type="text" class="form-control" id="input-nombre-compu" placeholder="Nombre del la persona.">
+										                 </div>
+									                  </div>
+									                  <div class="form-group">
+										                 <label for="input-pantallas" class="col-sm-2 control-label">Cantidad de Pantallas</label>
+										                 <div class="col-sm-2">
+										                     <input type="text" class="form-control" id="input-pantallas" placeholder="Tome en cuenta que una Laptop cuenta al menos 1.">
+										                 </div>
+									                  </div>
+									                  <div class="form-group">
+										                 <label for="input-pantallas" class="col-sm-2 control-label">Cantidad de Pantallas</label>
+										                 <div class="col-sm-2">
+										                     <input type="text" class="form-control" id="input-pantallas" placeholder="Tome en cuenta que una Laptop cuenta al menos 1.">
+										                 </div>
+									                  </div>
 									                  <div class="form-group">
 									                     <label for="select-os-compu" class="col-sm-2 control-label">Sistema Operativo</label>
 									                     <div class="col-sm-2">
@@ -75,7 +93,7 @@
 									                  <div class="form-group">
 										                 <label for="input-pantallas" class="col-sm-2 control-label">Cantidad de Pantallas</label>
 										                 <div class="col-sm-2">
-										                     <input type="SecurityCode" class="form-control" id="input-pantallas" placeholder="Tome en cuenta que una Laptop cuenta al menos 1.">
+										                     <input type="text" class="form-control" id="input-pantallas" placeholder="Tome en cuenta que una Laptop cuenta al menos 1.">
 										                 </div>
 									                  </div>
 								                 </fieldset>  
@@ -134,7 +152,7 @@
 								               <!-- Botones de Registro-->
 								               <div class="actionButtons pull-right">
 									                <button type="button" class="btn submit btn-success">+ Add</button>
-									                <button type="button" class="btn reset btn-danger">Reset</button>
+									                <button type="button" id="resetear" class="btn btn-danger">Reset</button>
 								               </div>
 							              </form>
 							          </div>
@@ -220,7 +238,10 @@
 						        <p class="lead">Mac OS X </p>
 						        <p class="lead">Laptop </p>
 						        <p class="lead">Pantallas : </p>
-						        <p><a class="btn reset btn-lg btn-danger" href="#" role="button">Remove</a></p>
+						        <div class="actionButtons pull-right">
+					                <button type="button" class="btn volver btn-success">Volver al Menu</button>
+					                <button type="button" class="btn borrar-articulo btn-danger">Remueve articulo  </button>
+				                </div>
 						      </div>
 						  </div>
 				        </div>
@@ -230,7 +251,6 @@
 	 	<footer>
 	 	   <script src="js/util/bootstrap.min.js"></script>
 	 	   <script src="js/util/jquery.js"></script>
-	 	   <script src="js/util/npm.js"></script>
 	 	   <script src="js/activos.js"></script>
 	 	   <script src="js/form.js"></script>
 	 	</footer>
