@@ -5,9 +5,18 @@ var ocultarFormulario = function() {
   $('#otros-fs').stop().hide(500);
 };
 
+var verDetalleArticulo = function(){
+  jQuery('#slider').animate({'margin-left': '-1160px'}, 500);
+};
 
+var resetAllPurchase = function(){
+  $('input').html('');	
+};
 
-
+var resetAllJavascript = function(){
+  location.reload(true);    //Reload Page
+  location.reload(false);   //Reload Cache
+};
 
 var toggleSelectionForm = function(){
 
@@ -36,5 +45,15 @@ $(document).ready(function (){
 	$('#select-tipo').click( function(){
 		toggleSelectionForm();
 	});
+	$('.view').click(function(){
+        verDetalleArticulo();
+	});
+	$('.reset').click(function(){
+        resetAllPurchase();
+	});
+
+
+
+
 	
 });
