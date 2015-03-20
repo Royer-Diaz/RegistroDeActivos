@@ -15,8 +15,7 @@ header {
 }
 
 footer {
-	height: 150px;
-	
+	  height: 150px;
     background: transparent linear-gradient(-45deg, #6C9 0%, #399 100%) repeat scroll 0% 0%;
 }
 
@@ -35,8 +34,8 @@ footer {
   float: left;
 }
 
+small {margin-right: 129px;}
 
-/*Formulario versatil*/
 
 #computadora-fs {
    display: none;
@@ -48,7 +47,11 @@ footer {
    display: none;
 }
 
+#lema {margin-top: 80px;}
 
+.jumbotron-2{width: 1100px;}
+
+/*Formulario versatil*/
 
 
 

@@ -6,7 +6,7 @@ var ocultarFormulario = function() {
 };
 
 var verDetalleArticulo = function(){
-  jQuery('#slider').animate({'margin-left': '-1160px'}, 500);
+  jQuery('#slider').animate({'margin-left': '-1148px'}, 500);
 };
 
 var resetAllPurchase = function(){
@@ -36,8 +36,7 @@ var toggleSelectionForm = function(){
      default:
         ocultarFormulario(); 
     }
-
-}
+};
 
 
 //Event Listeners
@@ -51,9 +50,8 @@ $(document).ready(function (){
 	$('.reset').click(function(){
         resetAllPurchase();
 	});
+    $('.restart').click(function(){
+        restar
+    });
 
-
-
-
-	
 });
