@@ -1,8 +1,8 @@
 
 var ocultarFormulario = function() {
-  $('#computadora-fs').stop().hide();
-  $('#movil-fs').stop().hide();
-  $('#otros-fs').stop().hide();
+  $('#computadora-fs').stop().hide(500);
+  $('#movil-fs').stop().hide(500);
+  $('#otros-fs').stop().hide(500);
 };
 
 
@@ -36,4 +36,5 @@ $(document).ready(function (){
 	$('#select-tipo').click( function(){
 		toggleSelectionForm();
 	});
+	
 });
