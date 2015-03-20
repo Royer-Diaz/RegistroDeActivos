@@ -1,0 +1,16 @@
+/*Stylos de la pagina*/
+
+
+
+
+header {
+	height: 300px;
+	
+    background: transparent linear-gradient(-45deg, #6C9 0%, #399 100%) repeat scroll 0% 0%;
+}
+
+footer {
+	height: 150px;
+	
+    background: transparent linear-gradient(-45deg, #6C9 0%, #399 100%) repeat scroll 0% 0%;
+}
