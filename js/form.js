@@ -1,3 +1,11 @@
+//Oculta los demas espacios cda ves que escoje un tipo nuevo.
+var ocultarFormulario = function() {
+  $('#computadora-fs').stop().hide(500);
+  $('#movil-fs').stop().hide(500);
+  $('#otros-fs').stop().hide(500);
+};
+
+//Hace que el formulario despliegue la configuracion exacta por tipo.
 var toggleSelectionForm = function(){
 
   switch ($('#select-tipo').val()) {
@@ -18,26 +26,19 @@ var toggleSelectionForm = function(){
     }
 };
 
-var ocultarFormulario = function() {
-  $('#computadora-fs').stop().hide(500);
-  $('#movil-fs').stop().hide(500);
-  $('#otros-fs').stop().hide(500);
-};
-
-var verDetalleArticulo = function(){
-  jQuery('#slider').animate({'margin-left': '-1148px'}, 500);
-};
-
+//Afecta el boton de volver en el detalle del articulo
 var volverPantallaInicio = function(){
   jQuery('#slider').animate({'margin-left': '0px'}, 500);
 };
 
+//Vacia los espacios en los inputs y textarea
 var resetearInputs = function(){
   $('input').val('');	
   $('textarea ').val('');	
   ocultarFormulario();
 };
 
+//Resetea todo y borra Objetos
 var resetAllJavascript = function(){
   location.reload(true);    //Reload Page
   location.reload(false);   //Reload Cache
@@ -47,6 +48,102 @@ var resetAllJavascript = function(){
 };
 
 
+//Manejo de Detalle del Articulo y muestras de articulos
+
+
+var Articulos = [];
+
+var verDetalleArticulo = function(articuloIndex){
+  var articuloActual = Articulos[articuloIndex];
+//Cambia los valores del Detalle del Articulo
+
+  $('#nombre-articulo span').html(articuloActual.getNombre());
+  $('#marca-articulo span').html(articuloActual.getMarca());
+  $('#modelo-articulo span').html(articuloActual.getModelo());
+  $('#activo-articulo span').html(articuloActual.getActivo());
+  $('#os-articulo span').html(articuloActual.getOs());
+  $('#estilo-articulo span').html(articuloActual.getEstilo());
+  $('#pantallas-articulo span').html(articuloActual.getPantallas());
+  $('#soporte-articulo span').html(articuloActual.getSoporte());
+  $('#descripcion-articulo span').html(articuloActual.getDescripcion());
+  
+  //$('#estado-motor span').html(motor.getEstado() ? "Encendido" : "Apagado");
+  //var miValor = micondicion ? "rojo":"negro";
+   $('#target .borrar-articulo').click(function () {
+    Articulos.splice($(this).data('index'), 1);
+    refrescarArticulos();
+    volverPantallaInicio();
+  });
+  $('#slider').animate({'margin-left': '-1148px'}, 500);
+  $('#target').slideDown();
+
+}
+
+var refrescarArticulos = function () {
+  var vehiculoRow;
+  $('#tabla-vehiculo tbody').html('');
+  Articulos.forEach(function (vehiculo, i) {
+    vehiculoRow = '<tr data-index="' + i + '">';
+    vehiculoRow += '<td><a href="javascript:;" data-index="' + i + '" class="detalle">' + vehiculo.getTipo() + '</a></td>';
+    vehiculoRow += '<td>' + vehiculo.getMarca() + '</td>';
+    vehiculoRow += '<td>' + vehiculo.getModelo() + '</td>';
+    vehiculoRow += '<td>' + vehiculo.getColor() + '</td>';
+    vehiculoRow += '<td>' + vehiculo.getMotor().getNumeroSerie() + '</td>';
+    vehiculoRow += '<td>' + vehiculo.getMotor().getCilindraje() + '</td>';
+    vehiculoRow += '<td>' + vehiculo.getLlantas().length + '</td>';
+    vehiculoRow += '<td><span data-index="' + i + '" class="delete">&otimes;</span></td>';
+    vehiculoRow += '</tr>';
+    $('#tabla-vehiculo tbody').append(vehiculoRow);
+  });
+
+  $('#tabla-vehiculo .delete').click(function () {
+    Articulos.splice($(this).data('index'), 1);
+    refrescarTabla();
+  });
+  $('#tabla-vehiculo .detalle').click(function () {
+    refrescarVehiculo($(this).data('index'));
+  });
+
+};
+
+$(document).ready(function () {
+
+  $('#crear-vehiculo').click(function () {
+    $('#form-vehiculo').stop().slideDown();
+  });
+  $('#cancel-vehiculo').click(function () {
+    $('#form-vehiculo').stop().slideUp(300, function () {
+      $('#form-vehiculo input').val('');
+    });
+  });
+
+  $('#submit-vehiculo').click(function () {
+    var nuevoVehiculo;
+
+    switch ($('#select-tipo').val()) {
+    case 'camion':
+      nuevoVehiculo = new Camion($('#input-marca').val(), $('#input-modelo').val(), $('#input-color').val(), $('#input-serie').val(), $('#input-cilindraje').val());
+      break;
+    case 'moto':
+      nuevoVehiculo = new Moto($('#input-marca').val(), $('#input-modelo').val(), $('#input-color').val(), $('#input-serie').val(), $('#input-cilindraje').val());
+      break;
+    default:
+      nuevoVehiculo = new Automovil($('#input-marca').val(), $('#input-modelo').val(), $('#input-color').val(), $('#input-serie').val(), $('#input-cilindraje').val());
+    }
+
+    Articulos.push(nuevoVehiculo);
+
+    refrescarTabla();
+    // $('#form-vehiculo input').val('');
+  });
+
+
+  Articulos.push(new Automovil('Nissan', 'Almera', 'Rojo', '12345', '1600cc')),
+  Articulos.push(new Moto('Duicati', 'Diavel', 'Negro', '54321', '1200cc')),
+  Articulos.push(new Camion('Mack', 'MRT450', 'Blanco', '67890', '8000cc')),
+
+  refrescarTabla();
+});
 
 
 

@@ -29,7 +29,7 @@
 			 	  <div id="slider">
 				   	    <div id="registro-tab" class="container-fluid">
 					         <div class="row">
-						          <div class="col-md-6">
+						          <div id="primera-columna" class="col-md-6">
 							          <div id="form-container">
 							              <form class="form-horizontal well col-sm-12" id="form-activos">
 								               <!--Elemento que determina el comportamiento de las secciones del formulario-->
@@ -81,6 +81,7 @@
 									                     <label for="select-os-compu" class="col-sm-2 control-label">Sistema Operativo</label>
 									                     <div class="col-sm-2">
 										                      <select class="form-control" id="select-os-compu">
+										                          <option value="default"></option>
 											                      <option value="mac-os">Mac OS</option>
 											                      <option value="windows">Windows</option>
 											                      <option value="linux">Linux</option>
@@ -88,18 +89,19 @@
 									                     </div>
 									                  </div>
 									                  <div class="form-group">
-										                 <label for="select-estilo" class="col-sm-2 control-label">Tipo de Dispositivo</label>
+										                 <label for="select-estilo-compu" class="col-sm-2 control-label">Tipo de Dispositivo</label>
 										                 <div class="col-sm-2">
-										                      <select class="form-control" id="select-estilo">
+										                      <select class="form-control" id="select-estilo-compu">
+										                          <option value="default"></option>
 											                      <option value="laptop">Laptop</option>
 											                      <option value="desktop">Desktop</option>
 										                      </select>
 										                 </div>
 									                  </div>
 									                  <div class="form-group">
-										                 <label for="input-pantallas" class="col-sm-2 control-label">Cantidad de Pantallas</label>
+										                 <label for="input-pantallas-compu" class="col-sm-2 control-label">Cantidad de Pantallas</label>
 										                 <div class="col-sm-2">
-										                     <input type="text" class="form-control" id="input-pantallas" placeholder="Tome en cuenta que una Laptop cuenta al menos 1.">
+										                     <input type="text" class="form-control" id="input-pantallas-compu" placeholder="Tome en cuenta que una Laptop cuenta al menos 1.">
 										                 </div>
 									                  </div>
 								                 </fieldset>  
@@ -135,6 +137,7 @@
 									                     <label for="select-os-movil" class="col-sm-2 control-label">Sistema Operativo</label>
 									                     <div class="col-sm-2">
 										                      <select class="form-control" id="select-os-movil">
+										                          <option value="default"></option>
 											                      <option value="ios">iOS</option>
 											                      <option value="windows">Windows</option>
 											                      <option value="android">Android</option>
@@ -142,9 +145,10 @@
 									                     </div>
 									                  </div>
 									                  <div class="form-group">
-										                 <label for="select-estilo2" class="col-sm-2 control-label">Tipo de Dispositivo</label>
+										                 <label for="select-estilo-movil" class="col-sm-2 control-label">Tipo de Dispositivo</label>
 										                 <div class="col-sm-2">
-										                      <select class="form-control" id="select-estilo2">
+										                      <select class="form-control" id="select-estilo-movil">
+										                          <option value="default"></option>
 											                      <option value="smartphone">Smartphone</option>
 											                      <option value="tableta">Tableta</option>
 										                      </select>
@@ -154,6 +158,7 @@
 										                 <label for="select-soporte" class="col-sm-2 control-label">Soporta Sim?</label>
 										                 <div class="col-sm-2">
 										                      <select class="form-control" id="select-soporte">
+										                          <option value="default"></option>
 											                      <option value="no">No</option>
 											                      <option value="3g">3g</option>
 											                      <option value="4g">4g</option>
@@ -190,9 +195,9 @@
 										                 </div>
 									                  </div>
 									                  <div class="form-group">
-									                     <label for="texto-otro-desscriptivo" class="col-sm-2 control-label">Descripcion</label>
+									                     <label for="texto-descriptivo-otro" class="col-sm-2 control-label">Descripcion</label>
 										                   <div class="col-sm-2">
-										                      <textarea cols="6" rows="5" class="form-control" id="texto-descriptivo"placeholder="Descripcion del activo"></textarea>
+										                      <textarea cols="6" rows="5" class="form-control" id="texto-descriptivo-otro"placeholder="Descripcion del activo"></textarea>
 										                   </div>
 									                  </div>
 								                  </fieldset>  
@@ -205,87 +210,88 @@
 							              </form>
 							          </div>
 						          </div>
-						          <div class="col-md-6">
-							          <div class="row placeholder">
+						          <div id="segunda-columna" class="col-md-6">
+							          <div id="" class="row placeholder">
 								            <div class="col-xs-4 col-sm-4">
 								              <h3>Heading</h3>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p><a class="btn view btn-default" href="#" role="button">View details »</a></p>
-								            </div><!--/.col-xs-6.col-lg-4-->
+								            </div>
 								            <div class="col-xs-4 col-sm-4">
 								              <h3>Heading</h3>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p><a class="btn view btn-default" href="#" role="button">View details »</a></p>
-								            </div><!--/.col-xs-6.col-lg-4-->
+								            </div>
 								            <div class="col-xs-4 col-sm-4">
 								              <h3>Heading</h3>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p><a class="btn view btn-default" href="#" role="button">View details »</a></p>
-								            </div><!--/.col-xs-6.col-lg-4-->
-							         <!--</div>-->
-							          <!-- <div class="row placeholder">-->
+								            </div>
 								            <div class="col-xs-4 col-sm-4">
 								              <h3>Heading</h3>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p><a class="btn view btn-default" href="#" role="button">View details »</a></p>
-								            </div><!--/.col-xs-6.col-lg-4-->
+								            </div>
 								            <div class="col-xs-4 col-sm-4">
 								              <h3>Heading</h3>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p><a class="btn view btn-default" href="#" role="button">View details »</a></p>
-								            </div><!--/.col-xs-6.col-lg-4-->
+								            </div>
 								            <div class="col-xs-4 col-sm-4">
 								              <h3>Heading</h3>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p><a class="btn view btn-default" href="#" role="button">View details »</a></p>
-								            </div><!--/.col-xs-6.col-lg-4-->
-							         <!--</div>-->
-							         <!-- <div class="row placeholder">-->
+								            </div>
 								            <div class="col-xs-4 col-sm-4">
 								              <h3>Heading</h3>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p><a class="btn view btn-default" href="#" role="button">View details »</a></p>
-								            </div><!--/.col-xs-6.col-lg-4-->
+								            </div>
 								            <div class="col-xs-4 col-sm-4">
 								              <h3>Heading</h3>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p><a class="btn view btn-default" href="#" role="button">View details »</a></p>
-								            </div><!--/.col-xs-6.col-lg-4-->
+								            </div>
 								            <div class="col-xs-4 col-sm-4">
 								              <h3>Heading</h3>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p>Donec id elit non mi porta </p>
 								              <p><a class="btn view btn-default" href="#" role="button">View details »</a></p>
-								            </div><!--/.col-xs-6.col-lg-4-->
+								            </div>
 						              </div>
 					 	          </div>
 					         </div>
 				 	    </div>
+				 	    <!--Preparar el contenedor en donde se mostrara los detalles del articulo -->
 				 	    <div id="cadaActivo-tab" class="conteiner-fluid">
 				 	       <div class="container">
-						      <div class="jumbotron jumbotron-2">
-						        <h1>Articulo #1</h1>
-						        <p class="lead">MacBookPro </p>
-						        <p class="lead">Mac OS X </p>
-						        <p class="lead">Laptop </p>
-						        <p class="lead">Pantallas : </p>
+						      <div id="target" class="jumbotron jumbotron-2">
+						        <h1 id="nombre-articulo" >Computadora de: <span>Rogelio Diaz Jimenez</span></h1>
+						        <p id="marca-articulo" class="lead"><span>Hp </span></p>
+						        <p id="modelo-articulo" class="lead"><span>Pavilion</span></p>
+						        <p id="activo-articulo" class="lead"><span>124525GHFT45</span></p>
+						        <p id="os-articulo" class="lead"><span>Linux</span></p>
+						        <p id="estilo-articulo" class="lead"><span>Desktop </span></p>
+						        <p id="pantallas-articulo" class="lead"><span>1</span></p>
+						        <p id="soporte-articulo" class="lead"><span>MacBookPro </span></p>
+						        <p id="descripcion-articulo" class="lead"><span>Computadora Mac con muy buenas actualizaciones, memoria nueva de 8 Gigas y ademas viene con muchas mas extras. </span></p>
 						        <div class="actionButtons pull-right">
 					                <button type="button" class="btn volver btn-success">Volver al Menu</button>
 					                <button type="button" class="btn borrar-articulo btn-danger">Remueve articulo  </button>
