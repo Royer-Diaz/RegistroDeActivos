@@ -1,55 +1,9 @@
-//Oculta los demas espacios cda ves que escoje un tipo nuevo.
-var ocultarFormulario = function() {
-  $('#computadora-fs').stop().hide(500);
-  $('#movil-fs').stop().hide(500);
-  $('#otros-fs').stop().hide(500);
-};
-
-//Hace que el formulario despliegue la configuracion exacta por tipo.
-var toggleSelectionForm = function(){
-
-  switch ($('#select-tipo').val()) {
-    case 'computadoras':
-       ocultarFormulario();
-       $('#computadora-fs').slideDown(400);
-      break;
-    case 'moviles':
-       ocultarFormulario();
-       $('#movil-fs').slideDown(400);
-      break;
-    case 'otros':
-        ocultarFormulario();
-        $('#otros-fs').slideDown(400);
-       break;
-     default:
-        ocultarFormulario(); 
-    }
-};
-
-//Afecta el boton de volver en el detalle del articulo
-var volverPantallaInicio = function(){
-  jQuery('#slider').animate({'margin-left': '0px'}, 500);
-};
-
 //Vacia los espacios en los inputs y textarea
 var resetearInputs = function(){
   $('input').val('');	
   $('textarea ').val('');	
   ocultarFormulario();
 };
-
-//Resetea todo y borra Objetos
-var resetAllJavascript = function(){
-  location.reload(true);    //Reload Page
-  location.reload(false);   //Reload Cache
-  $('input').val('');	    //Remove all text in the inputs
-  $('textarea ').val('');	
-  ocultarFormulario();
-};
-
-
-//Manejo de Detalle del Articulo y muestras de articulos
-
 
 var Articulos = [];
 
@@ -74,11 +28,12 @@ var verDetalleArticulo = function(articuloIndex){
     refrescarArticulos();
     volverPantallaInicio();
   });
-  $('#slider').animate({'margin-left': '-1148px'}, 500);
+   moverDetalleArticulo();
   $('#target').slideDown();
 
 }
 
+/*
 var refrescarArticulos = function () {
   var vehiculoRow;
   $('#tabla-articulo tbody').html('');
@@ -111,11 +66,6 @@ $(document).ready(function () {
   $('#crear-articulo').click(function () {
     $('#form-articulo').stop().slideDown();
   });
-  $('#cancel-articulo').click(function () {
-    $('#form-articulo').stop().slideUp(300, function () {
-      $('#form-articulo input').val('');
-    });
-  });
 
   $('#submit-vehiculo').click(function () {
     var nuevoVehiculo;
@@ -144,36 +94,45 @@ $(document).ready(function () {
 
   refrescarArticulo();
 });
-
+*/
 
 
 //Validaciones del Formulario
 
 var validate = function () {
     var result = true,
+      //Seleccion de que dsositivo se almacena
+      $selectTipoDispositivo = $('#select-tipo'),
+      //Si escoje computadora 
       $inputNombreCompu = $('#input-nombre-compu'),
-      $inputNombreMovil = $('#input-nombre-movil'),
-      $inputNombreOtro = $('#input-nombre-otro'),
       $inputMarcaCompu = $('#input-marca-compu'),
-      $inputMarcaMovil= $('#input-marca-movil'),
-      $inputMarcaOtro = $('#input-marca-otro'),
       $inputModeloCompu = $('#input-modelo-compu'),
-      $inputModeloMovil = $('#input-modelo-movil'),
-      $inputModeloOtro = $('#input-modelo-otro'),
       $inputActivoCompu = $('#input-activo-compu'),
-      $inputActivoMovil = $('#input-activo-movil'),
-      $inputActivoOtro = $('#input-activo-otro'),
       $selectSistemaCompu = $('#select-os-compu'),
-      $selectSistemaMovil = $('#select-os-movil'),
-      $selectTipoCompu = $('#select-estilo-compu'),
-      $selectTipoMovil = $('#select-estilo-movil'),
+      $selectEstiloCompu = $('#select-estilo-compu'),
       $inputPantallaCompu = $('#input-pantallas-compu'),
+      //Si escoje Movil
+      $inputNombreMovil = $('#input-nombre-movil'),
+      $inputMarcaMovil= $('#input-marca-movil'),
+      $inputModeloMovil = $('#input-modelo-movil'),
+      $inputActivoMovil = $('#input-activo-movil'),
+      $selectSistemaMovil = $('#select-os-movil'),
+      $selectEstiloMovil = $('#select-estilo-movil'),
       $selectSupportMovil = $('#select-soporte'),
+      //Si escoje otro tipo de activo
+      $inputNombreOtro = $('#input-nombre-otro'),
+      $inputMarcaOtro = $('#input-marca-otro'),
+      $inputModeloOtro = $('#input-modelo-otro'),
+      $inputActivoOtro = $('#input-activo-otro'),
       $textDescripcionOtro = $('#input-descriptivo-otro');
-
-
-    $('.has-error').removeClass('has-error');
-   //Validaciones para Nombres
+      //Removemos primero si ya habia error en el formulario
+      $('.has-error').removeClass('has-error');
+   //Validaciones para selec de Tipo de Dispositivo
+    if (!$selectTipoDispositivo.val() || $selectTipoDispositivo.val().length > 50) {
+      result = false;
+      $selectTipoDispositivo.closest('.form-group').addClass('has-error');
+    }
+    //Validaciones para Nombres
     if (!$inputNombreCompu.val() || $inputNombreCompu.val().length > 50) {
       result = false;
       $inputNombreCompu.closest('.form-group').addClass('has-error');
@@ -261,27 +220,37 @@ var validate = function () {
     return result;
   };
 
-//Event Listeners
+//Event Listeners del formulario
 $(document).ready(function (){
 
-	$('#select-tipo').click( function(){
-		toggleSelectionForm();
-	});
-	$('.view').click(function(){
-        verDetalleArticulo();
-	});
-	$('#resetear').click(function(){
-        resetearInputs();
-	});
-    $('.restart').click(function(){
-        resetAllJavascript();
-    });
-    $('.volver').click(function(){
-        volverPantallaInicio();
-    });
-    $('.borrar-articulo').click(function(){
-        borrarObjeto();
-    });
+  
+  //Boton de submit el formulario
+  $('.submit').click( function(){
+    if(validate()){
 
+    var nuevoArticulo;
+
+    switch ($('#select-tipo').val()) {
+    case 'computadora':
+      nuevoArticulo = new Computadora($('#input-marca').val(), $('#input-modelo').val(), $('#input-color').val(), $('#input-serie').val(), $('#input-cilindraje').val());
+      break;
+    case 'movil':
+      nuevoArticulo = new Movil($('#input-marca').val(), $('#input-modelo').val(), $('#input-color').val(), $('#input-serie').val(), $('#input-cilindraje').val());
+      break;
+    case 'otro':
+      nuevoArticulo = new Otro($('#input-marca').val(), $('#input-modelo').val(), $('#input-color').val(), $('#input-serie').val(), $('#input-cilindraje').val());
+    }
+    Articulos.push(nuevoArticulo);
+    refrescarArticulos();
+    }
+    
+  });
+  //Boton de resetar el formulario
+  $('#resetear').click(function(){
+    resetearInputs();
+  });  
 
 });
+
+
+
