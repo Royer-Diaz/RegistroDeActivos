@@ -81,39 +81,39 @@ var verDetalleArticulo = function(articuloIndex){
 
 var refrescarArticulos = function () {
   var vehiculoRow;
-  $('#tabla-vehiculo tbody').html('');
-  Articulos.forEach(function (vehiculo, i) {
-    vehiculoRow = '<tr data-index="' + i + '">';
-    vehiculoRow += '<td><a href="javascript:;" data-index="' + i + '" class="detalle">' + vehiculo.getTipo() + '</a></td>';
-    vehiculoRow += '<td>' + vehiculo.getMarca() + '</td>';
-    vehiculoRow += '<td>' + vehiculo.getModelo() + '</td>';
-    vehiculoRow += '<td>' + vehiculo.getColor() + '</td>';
-    vehiculoRow += '<td>' + vehiculo.getMotor().getNumeroSerie() + '</td>';
-    vehiculoRow += '<td>' + vehiculo.getMotor().getCilindraje() + '</td>';
-    vehiculoRow += '<td>' + vehiculo.getLlantas().length + '</td>';
-    vehiculoRow += '<td><span data-index="' + i + '" class="delete">&otimes;</span></td>';
-    vehiculoRow += '</tr>';
-    $('#tabla-vehiculo tbody').append(vehiculoRow);
+  $('#tabla-articulo tbody').html('');
+  Articulos.forEach(function (articulo, i) {
+    articuloDiv = '<tr data-index="' + i + '">';
+    articuloDiv += '<td><a href="javascript:;" data-index="' + i + '" class="detalle">' + articulo.getTipo() + '</a></td>';
+    articuloDiv += '<td>' + articulo.getMarca() + '</td>';
+    articuloDiv += '<td>' + articulo.getModelo() + '</td>';
+    articuloDiv += '<td>' + articulo.getColor() + '</td>';
+    articuloDiv += '<td>' + articulo.getMotor().getNumeroSerie() + '</td>';
+    articuloDiv += '<td>' + articulo.getMotor().getCilindraje() + '</td>';
+    articuloDiv += '<td>' + articulo.getLlantas().length + '</td>';
+    articuloDiv += '<td><span data-index="' + i + '" class="delete">&otimes;</span></td>';
+    articuloDiv += '</tr>';
+    $('#tabla-articulo tbody').append(articuloDiv);
   });
 
-  $('#tabla-vehiculo .delete').click(function () {
+  $('#tabla-articulo .delete').click(function () {
     Articulos.splice($(this).data('index'), 1);
     refrescarTabla();
   });
-  $('#tabla-vehiculo .detalle').click(function () {
-    refrescarVehiculo($(this).data('index'));
+  $('#tabla-articulo .detalle').click(function () {
+    refrescarArticulo($(this).data('index'));
   });
 
 };
 
 $(document).ready(function () {
 
-  $('#crear-vehiculo').click(function () {
-    $('#form-vehiculo').stop().slideDown();
+  $('#crear-articulo').click(function () {
+    $('#form-articulo').stop().slideDown();
   });
-  $('#cancel-vehiculo').click(function () {
-    $('#form-vehiculo').stop().slideUp(300, function () {
-      $('#form-vehiculo input').val('');
+  $('#cancel-articulo').click(function () {
+    $('#form-articulo').stop().slideUp(300, function () {
+      $('#form-articulo input').val('');
     });
   });
 
@@ -133,7 +133,7 @@ $(document).ready(function () {
 
     Articulos.push(nuevoVehiculo);
 
-    refrescarTabla();
+    refrescarArticulo();
     // $('#form-vehiculo input').val('');
   });
 
@@ -142,7 +142,7 @@ $(document).ready(function () {
   Articulos.push(new Moto('Duicati', 'Diavel', 'Negro', '54321', '1200cc')),
   Articulos.push(new Camion('Mack', 'MRT450', 'Blanco', '67890', '8000cc')),
 
-  refrescarTabla();
+  refrescarArticulo();
 });
 
 
