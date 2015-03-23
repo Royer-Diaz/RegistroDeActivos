@@ -10,19 +10,22 @@ var refrescarArticulos = function () {
     articuloDiv += '<p>Modelo:<span><small>' + articulo.getModelo() + '</small></span></p>';
     articuloDiv += '<p># Activo:<span><small>' + articulo.getActivo() + '</small></span></p>';
     articuloDiv += '<p>OS:<span><small>' + articulo.getOs() + '</small></span></p>';
-    articuloDiv += '<div class="actionButtons pull-left">';
-    articuloDiv += '<p><a class="btn view btn-default" href="javascript:;" role="button">View details »</a></p>';
-    articuloDiv += '<p><span data-index="' + i + '" class="delete">&otimes;</span></p>';
+    articuloDiv += '<div class="actionButtons pull-right">';
+    articuloDiv += '<p><a class="btn view btn-default" href="javascript:;" role="button">Ver Detalles »</a></p>';
+    articuloDiv += '<p><a class="btn delete btn-danger" href="javascript:;" data-index="' + i + '" role="button"><span>Borrar</span></a></p>';
     articuloDiv += '</div>';
     $('#articulos_registrados').append(articuloDiv);
   });
   
-   $('.view').click(function () {
+   //Botoneras de Vista del detalle en el Articulo
+  $('.view').click(function () {
     moverDetalleArticulo();
+    verDetalleArticulo($(this).data('index'))
   });  
+     
    $('#articulos_registrados .delete').click(function () {
     Articulos.splice($(this).data('index'), 1);
-    refrescarArticulos();
+    refrescarArticulos(); 
   });
 
 };
@@ -43,15 +46,8 @@ var verDetalleArticulo = function(articuloIndex){
   
   //$('#estado-motor span').html(motor.getEstado() ? "Encendido" : "Apagado");
   //var miValor = micondicion ? "rojo":"negro";
-   $('#target .borrar-articulo').click(function () {
-    Articulos.splice($(this).data('index'), 1);
-    refrescarArticulos();
-    volverPantallaInicio();
-  });  
-  moverDetalleArticulo();
-  $('#target').slideDown();
+   
 };
-
 
 //Validaciones del Formulario
 

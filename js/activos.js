@@ -126,6 +126,7 @@ var toggleSelectionForm = function(){
     }
 };
 
+
 //Manejo de Detalle del Articulo y muestras de articulos
 var moverDetalleArticulo = function(){
    $('#slider').animate({'margin-left': '-1148px'}, 500);
@@ -142,6 +143,7 @@ var volverPantallaInicio = function(){
 $(document).ready(function(){
 //Botones de la interfas grafica:
 
+
   //Reset de todo el contenido y Javascript objects:
   $('.navbar-brand').click( function(){
     resetAllJavascript();
@@ -150,12 +152,6 @@ $(document).ready(function(){
   //Crea el efecto de acordeon el el formulario de ingreso de activos
   $('#select-tipo').click( function(){
     toggleSelectionForm();
-  });
-
-  //Botoneras de Vista del detalle en el Articulo
-  $('.view').click(function(){
-      moverDetalleArticulo();
-      //crearDetalleArticulo();
   });
 
   //Boton de Volver a Pantalla principal 
