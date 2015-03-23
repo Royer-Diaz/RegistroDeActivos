@@ -56,21 +56,21 @@ var refrescarArticulos = function () {
   });  
 };
 
-/*
+
 $(document).ready(function () {
 
-  $('#crear-articulo').click(function () {
-    $('#form-articulo').stop().slideDown();
+  $('.submit').click(function () {
+    $('articulos_registrados').stop().slideDown();
   });
 
 
-  Articulos.push(new Automovil('Nissan', 'Almera', 'Rojo', '12345', '1600cc')),
-  Articulos.push(new Moto('Duicati', 'Diavel', 'Negro', '54321', '1200cc')),
-  Articulos.push(new Camion('Mack', 'MRT450', 'Blanco', '67890', '8000cc')),
+  Articulos.push(new Computadora( "Rogelio Diaz Jimenez", "Acer", "Aspire E 15", "526FGHDG-65354-HJ55", "Linux", "Laptop", 1, "Wi-Fi or LAN",'')),
+  Articulos.push(new Movil("Rogelio Diaz Jimenez", "LG", "G3", "865GHT-GGHH-V655", "Android", "Smartphone", 1, "4G", '')),
+  Articulos.push(new Otro("Rogelio Diaz Jimenez", "Keen", "Hiking Shoe", "5622DFF-FFF5511R-DDF", '', '', '', '', "Zapatos de montaña!")),
 
   refrescarArticulo();
 });
-*/
+
 
 
 //Validaciones del Formulario
@@ -242,30 +242,22 @@ $(document).ready(function (){
   
   //Boton de submit el formulario
   $('.submit').click( function(){
-    if(validate()){
-
     var nuevoArticulo;
-
-    switch ($('#select-tipo').val()) {
-    case 'computadora':
-      nuevoArticulo = new Computadora($('#input-nombre-compu').val(), $('#input-marca-compu').val(), $('#input-modelo-compu').val(),$('#input-activo-compu').val(), $('#select-os-compu').val(),$('#select-estilo-compu').val(), $('#input-pantallas-compu').val(), "Wi-Fi or LAN",'');
-      break;
-    case 'movil':
-      nuevoArticulo = new Movil($('#input-nombre-movil').val(), $('#input-marca-movil').val(), $('#input-modelo-movil').val(), $('#input-activo-movil').val(), $('#select-os-movil').val(), $('#select-estilo-movil').val(), 1, $('#select-soporte').val(), '');
-      break;
-    case 'otro':
-      nuevoArticulo = new Otro($('#input-nombre-otro').val(), $('#input-marca-otro').val(), $('#input-modelo-otro').val(), $('#input-activo-otro').val(), '', '', '', '', $('#input-descriptivo-otro').val());
-      break;
-    default:
-      
-        
-    }
-
+        if(validate()){
+        switch ($('#select-tipo').val()) {
+        case 'computadoras':
+          nuevoArticulo = new Computadora($('#input-nombre-compu').val(), $('#input-marca-compu').val(), $('#input-modelo-compu').val(),$('#input-activo-compu').val(), $('#select-os-compu').val(),$('#select-estilo-compu').val(), $('#input-pantallas-compu').val(), "Wi-Fi or LAN",'');
+          break;
+        case 'moviles':
+          nuevoArticulo = new Movil($('#input-nombre-movil').val(), $('#input-marca-movil').val(), $('#input-modelo-movil').val(), $('#input-activo-movil').val(), $('#select-os-movil').val(), $('#select-estilo-movil').val(), 1, $('#select-soporte').val(), '');
+          break;
+        case 'otros':
+          nuevoArticulo = new Otro($('#input-nombre-otro').val(), $('#input-marca-otro').val(), $('#input-modelo-otro').val(), $('#input-activo-otro').val(), '', '', '', '', $('#input-descriptivo-otro').val());
+          break;
+        default:
+        }
     Articulos.push(nuevoArticulo);
-
     refrescarArticulos();
     }
-
-  }); 
-
+  }) 
 });
