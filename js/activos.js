@@ -1,53 +1,3 @@
-//Oculta los demas espacios cda ves que escoje un tipo nuevo.
-var ocultarFormulario = function() {
-  $('#computadora-fs').stop().hide(500);
-  $('#movil-fs').stop().hide(500);
-  $('#otros-fs').stop().hide(500);
-};
-
-//Resetea todo y borra Objetos
-var resetAllJavascript = function(){
-  location.reload(true);    //Reload Page
-  location.reload(false);   //Reload Cache
-  $('input').val('');	    //Remove all text in the inputs
-  $('select').prop(selectedIndex,0);
-  $('textarea ').val('');	
-  ocultarFormulario();
-};
-
-//Hace que el formulario despliegue la configuracion exacta por tipo.
-var toggleSelectionForm = function(){
-
-  switch ($('#select-tipo').val()) {
-    case 'computadoras':
-       ocultarFormulario();
-       $('#computadora-fs').slideDown(400);
-      break;
-    case 'moviles':
-       ocultarFormulario();
-       $('#movil-fs').slideDown(400);
-      break;
-    case 'otros':
-        ocultarFormulario();
-        $('#otros-fs').slideDown(400);
-       break;
-     default:
-        ocultarFormulario(); 
-    }
-};
-
-//Manejo de Detalle del Articulo y muestras de articulos
-var moverDetalleArticulo = function(){
-   $('#slider').animate({'margin-left': '-1148px'}, 500);
-};
-
-//Afecta el boton de volver en el detalle del articulo
-var volverPantallaInicio = function(){
-  jQuery('#slider').animate({'margin-left': '0px'}, 500);
-};
-
-
-
 var Articulo = function ( _nombre, _marca, _modelo, _activo, _sistema, _estilo, _pantallas, _supportSim, _description) {
      //Propiedades de los articulos
   var nombre = _nombre,
@@ -61,6 +11,7 @@ var Articulo = function ( _nombre, _marca, _modelo, _activo, _sistema, _estilo, 
       descripcion = _description;
       tipo = "Articulo";
 
+   //Metodos
   this.getNombre = function () {
     return nombre;
   };
@@ -89,7 +40,7 @@ var Articulo = function ( _nombre, _marca, _modelo, _activo, _sistema, _estilo, 
     return support
   };
   this.getDescripcion = function(){
-  	return descripcion;
+    return descripcion;
   }
 
 };
@@ -130,38 +81,92 @@ var Otro = function (  _nombre, _marca, _modelo, _activo, _sistema, _estilo, _pa
 Otro.prototype = new Articulo();
 Otro.prototype.constructor = Otro;
 
+//Vacia los espacios en los inputs y textarea
+var resetearInputs = function(){
+  $('input').val(''); 
+  $('textarea ').val(''); 
+  ocultarFormulario();
+};
+
+//Oculta los demas espacios cda ves que escoje un tipo nuevo.
+var ocultarFormulario = function() {
+  $('#computadora-fs').stop().hide(500);
+  $('#movil-fs').stop().hide(500);
+  $('#otros-fs').stop().hide(500);
+};
+
+//Resetea todo y borra Objetos
+var resetAllJavascript = function(){
+  location.reload(true);    //Reload Page
+  location.reload(false);   //Reload Cache
+  $('input').val('');     //Remove all text in the inputs
+  $('select').prop(selectedIndex,0);
+  $('textarea ').val(''); 
+  ocultarFormulario();
+};
+
+//Hace que el formulario despliegue la configuracion exacta por tipo.
+var toggleSelectionForm = function(){
+
+  switch ($('#select-tipo').val()) {
+    case 'computadoras':
+       ocultarFormulario();
+       $('#computadora-fs').slideDown(400);
+      break;
+    case 'moviles':
+       ocultarFormulario();
+       $('#movil-fs').slideDown(400);
+      break;
+    case 'otros':
+        ocultarFormulario();
+        $('#otros-fs').slideDown(400);
+       break;
+     default:
+        ocultarFormulario(); 
+    }
+};
+
+//Manejo de Detalle del Articulo y muestras de articulos
+var moverDetalleArticulo = function(){
+   $('#slider').animate({'margin-left': '-1148px'}, 500);
+};
+
+//Afecta el boton de volver en el detalle del articulo
+var volverPantallaInicio = function(){
+  jQuery('#slider').animate({'margin-left': '0px'}, 500);
+};
+
 
 //-------Event Listeners---------//
 
 $(document).ready(function(){
-
 //Botones de la interfas grafica:
 
-	//Reset de todo el contenido y Javascript objects:
-	$('.navbar-brand').click( function(){
-	  resetAllJavascript();
-	});
+  //Reset de todo el contenido y Javascript objects:
+  $('.navbar-brand').click( function(){
+    resetAllJavascript();
+  });
 
-	//Crea el efecto de acordeon el el formulario de ingreso de activos
-	$('#select-tipo').click( function(){
-		toggleSelectionForm();
-	});
+  //Crea el efecto de acordeon el el formulario de ingreso de activos
+  $('#select-tipo').click( function(){
+    toggleSelectionForm();
+  });
 
-	//Botoneras de Vista del detalle en el Articulo
-	$('.view').click(function(){
-	    moverDetalleArticulo();
-	    //crearDetalleArticulo();
-	});
+  //Botoneras de Vista del detalle en el Articulo
+  $('.view').click(function(){
+      moverDetalleArticulo();
+      //crearDetalleArticulo();
+  });
 
-	//Boton de Volver a Pantalla principal 
-	$('.volver').click(function(){
-	      volverPantallaInicio();
-	  });
+  //Boton de Volver a Pantalla principal 
+  $('.volver').click(function(){
+        volverPantallaInicio();
+    });
 
-	 //Boton de resetar el formulario
-	  $('#resetear').click(function(){
-	    $('.has-error').removeClass('has-error');
-	    resetearInputs();
-	  }); 
+   //Boton de resetar el formulario
+    $('#resetear').click(function(){
+      $('.has-error').removeClass('has-error');
+      resetearInputs();
+    }); 
 
 });
