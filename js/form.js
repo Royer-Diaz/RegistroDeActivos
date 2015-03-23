@@ -1,36 +1,3 @@
-//Oculta los demas espacios cda ves que escoje un tipo nuevo.
-var ocultarFormulario = function() {
-  $('#computadora-fs').stop().hide(500);
-  $('#movil-fs').stop().hide(500);
-  $('#otros-fs').stop().hide(500);
-};
-
-//Hace que el formulario despliegue la configuracion exacta por tipo.
-var toggleSelectionForm = function(){
-
-  switch ($('#select-tipo').val()) {
-    case 'computadoras':
-       ocultarFormulario();
-       $('#computadora-fs').slideDown(400);
-      break;
-    case 'moviles':
-       ocultarFormulario();
-       $('#movil-fs').slideDown(400);
-      break;
-    case 'otros':
-        ocultarFormulario();
-        $('#otros-fs').slideDown(400);
-       break;
-     default:
-        ocultarFormulario(); 
-    }
-};
-
-//Afecta el boton de volver en el detalle del articulo
-var volverPantallaInicio = function(){
-  jQuery('#slider').animate({'margin-left': '0px'}, 500);
-};
-
 //Vacia los espacios en los inputs y textarea
 var resetearInputs = function(){
   $('input').val('');	
@@ -38,34 +5,21 @@ var resetearInputs = function(){
   ocultarFormulario();
 };
 
-//Resetea todo y borra Objetos
-var resetAllJavascript = function(){
-  location.reload(true);    //Reload Page
-  location.reload(false);   //Reload Cache
-  $('input').val('');	    //Remove all text in the inputs
-  $('textarea ').val('');	
-  ocultarFormulario();
-};
-
-
-//Manejo de Detalle del Articulo y muestras de articulos
-
-
 var Articulos = [];
 
 var verDetalleArticulo = function(articuloIndex){
   var articuloActual = Articulos[articuloIndex];
 //Cambia los valores del Detalle del Articulo
 
-  $('#nombre-articulo span').html(articuloActual.getNombre());
-  $('#marca-articulo span').html(articuloActual.getMarca());
-  $('#modelo-articulo span').html(articuloActual.getModelo());
-  $('#activo-articulo span').html(articuloActual.getActivo());
-  $('#os-articulo span').html(articuloActual.getOs());
-  $('#estilo-articulo span').html(articuloActual.getEstilo());
-  $('#pantallas-articulo span').html(articuloActual.getPantallas());
-  $('#soporte-articulo span').html(articuloActual.getSoporte());
-  $('#descripcion-articulo span').html(articuloActual.getDescripcion());
+  $('#nombre-articulo span small').html(articuloActual.getNombre());
+  $('#marca-articulo span small').html(articuloActual.getMarca());
+  $('#modelo-articulo span small').html(articuloActual.getModelo());
+  $('#activo-articulo span small').html(articuloActual.getActivo());
+  $('#os-articulo span small').html(articuloActual.getOs());
+  $('#estilo-articulo span small').html(articuloActual.getEstilo());
+  $('#pantallas-articulo span small').html(articuloActual.getPantallas());
+  $('#soporte-articulo span small').html(articuloActual.getSoporte());
+  $('#descripcion-articulo span small').html(articuloActual.getDescripcion());
   
   //$('#estado-motor span').html(motor.getEstado() ? "Encendido" : "Apagado");
   //var miValor = micondicion ? "rojo":"negro";
@@ -73,76 +27,48 @@ var verDetalleArticulo = function(articuloIndex){
     Articulos.splice($(this).data('index'), 1);
     refrescarArticulos();
     volverPantallaInicio();
-  });
-  $('#slider').animate({'margin-left': '-1148px'}, 500);
+  });  
+
+   moverDetalleArticulo();
   $('#target').slideDown();
 
 }
 
+
 var refrescarArticulos = function () {
-  var vehiculoRow;
-  $('#tabla-vehiculo tbody').html('');
-  Articulos.forEach(function (vehiculo, i) {
-    vehiculoRow = '<tr data-index="' + i + '">';
-    vehiculoRow += '<td><a href="javascript:;" data-index="' + i + '" class="detalle">' + vehiculo.getTipo() + '</a></td>';
-    vehiculoRow += '<td>' + vehiculo.getMarca() + '</td>';
-    vehiculoRow += '<td>' + vehiculo.getModelo() + '</td>';
-    vehiculoRow += '<td>' + vehiculo.getColor() + '</td>';
-    vehiculoRow += '<td>' + vehiculo.getMotor().getNumeroSerie() + '</td>';
-    vehiculoRow += '<td>' + vehiculo.getMotor().getCilindraje() + '</td>';
-    vehiculoRow += '<td>' + vehiculo.getLlantas().length + '</td>';
-    vehiculoRow += '<td><span data-index="' + i + '" class="delete">&otimes;</span></td>';
-    vehiculoRow += '</tr>';
-    $('#tabla-vehiculo tbody').append(vehiculoRow);
+  var articuloDiv;
+  $('#articulos_registrados').html('');
+  Articulos.forEach(function (articulo, i) {
+    articuloDiv = '<div  data-index="' + i + 'class="col-xs-4 col-sm-4">';
+    articuloDiv += '<p>Dueño: <span><small>'+ articulo.getNombre() +'</small></span></p>';
+    articuloDiv += '<p>Marca:<span><small>' + articulo.getMarca() + '</small> </span></p>';
+    articuloDiv += '<p>Modelo:<span><small>' + articulo.getModelo() + '</small></span></p>';
+    articuloDiv += '<p># Activo:<span><small>' + articulo.getActivo() + '</small></span></p>';
+    articuloDiv += '<p>OS:<span><small>' + articulo.getOs() + '</small></span></p>';
+    articuloDiv += '<div class="actionButtons pull-left">';
+    articuloDiv += '<p><a class="btn view btn-default" href="javascript:;" role="button">View details »</a></p>';
+    articuloDiv += '</div>';
+    $('#articulos_registrados').append(articuloDiv);
   });
-
-  $('#tabla-vehiculo .delete').click(function () {
-    Articulos.splice($(this).data('index'), 1);
-    refrescarTabla();
-  });
-  $('#tabla-vehiculo .detalle').click(function () {
-    refrescarVehiculo($(this).data('index'));
-  });
-
+  
+   $('.view').click(function () {
+    moverDetalleArticulo();
+  });  
 };
+
 
 $(document).ready(function () {
 
-  $('#crear-vehiculo').click(function () {
-    $('#form-vehiculo').stop().slideDown();
-  });
-  $('#cancel-vehiculo').click(function () {
-    $('#form-vehiculo').stop().slideUp(300, function () {
-      $('#form-vehiculo input').val('');
-    });
-  });
-
-  $('#submit-vehiculo').click(function () {
-    var nuevoVehiculo;
-
-    switch ($('#select-tipo').val()) {
-    case 'camion':
-      nuevoVehiculo = new Camion($('#input-marca').val(), $('#input-modelo').val(), $('#input-color').val(), $('#input-serie').val(), $('#input-cilindraje').val());
-      break;
-    case 'moto':
-      nuevoVehiculo = new Moto($('#input-marca').val(), $('#input-modelo').val(), $('#input-color').val(), $('#input-serie').val(), $('#input-cilindraje').val());
-      break;
-    default:
-      nuevoVehiculo = new Automovil($('#input-marca').val(), $('#input-modelo').val(), $('#input-color').val(), $('#input-serie').val(), $('#input-cilindraje').val());
-    }
-
-    Articulos.push(nuevoVehiculo);
-
-    refrescarTabla();
-    // $('#form-vehiculo input').val('');
+  $('.submit').click(function () {
+    $('articulos_registrados').stop().slideDown();
   });
 
 
-  Articulos.push(new Automovil('Nissan', 'Almera', 'Rojo', '12345', '1600cc')),
-  Articulos.push(new Moto('Duicati', 'Diavel', 'Negro', '54321', '1200cc')),
-  Articulos.push(new Camion('Mack', 'MRT450', 'Blanco', '67890', '8000cc')),
+  Articulos.push(new Computadora( "Rogelio Diaz Jimenez", "Acer", "Aspire E 15", "526FGHDG-65354-HJ55", "Linux", "Laptop", 1, "Wi-Fi or LAN",'')),
+  Articulos.push(new Movil("Rogelio Diaz Jimenez", "LG", "G3", "865GHT-GGHH-V655", "Android", "Smartphone", 1, "4G", '')),
+  Articulos.push(new Otro("Rogelio Diaz Jimenez", "Keen", "Hiking Shoe", "5622DFF-FFF5511R-DDF", '', '', '', '', "Zapatos de montaña!")),
 
-  refrescarTabla();
+  refrescarArticulo();
 });
 
 
@@ -151,137 +77,187 @@ $(document).ready(function () {
 
 var validate = function () {
     var result = true,
-      $inputNombreCompu = $('#input-nombre-compu'),
-      $inputNombreMovil = $('#input-nombre-movil'),
-      $inputNombreOtro = $('#input-nombre-otro'),
-      $inputMarcaCompu = $('#input-marca-compu'),
-      $inputMarcaMovil= $('#input-marca-movil'),
-      $inputMarcaOtro = $('#input-marca-otro'),
-      $inputModeloCompu = $('#input-modelo-compu'),
-      $inputModeloMovil = $('#input-modelo-movil'),
-      $inputModeloOtro = $('#input-modelo-otro'),
-      $inputActivoCompu = $('#input-activo-compu'),
-      $inputActivoMovil = $('#input-activo-movil'),
-      $inputActivoOtro = $('#input-activo-otro'),
-      $selectSistemaCompu = $('#select-os-compu'),
-      $selectSistemaMovil = $('#select-os-movil'),
-      $selectTipoCompu = $('#select-estilo-compu'),
-      $selectTipoMovil = $('#select-estilo-movil'),
-      $inputPantallaCompu = $('#input-pantallas-compu'),
-      $selectSupportMovil = $('#select-soporte'),
-      $textDescripcionOtro = $('#input-descriptivo-otro');
+      //Seleccion de que dsositivo se almacena
+      selectTipoDispositivo = $('#select-tipo').val(),
+      //Si escoje computadora 
+      inputNombreCompu = $('#input-nombre-compu').val(),
+      inputMarcaCompu = $('#input-marca-compu').val(),
+      inputModeloCompu = $('#input-modelo-compu').val(),
+      inputActivoCompu = $('#input-activo-compu').val(),
+      selectSistemaCompu = $('#select-os-compu').val(),
+      selectEstiloCompu = $('#select-estilo-compu').val(),
+      inputPantallaCompu = $('#input-pantallas-compu').val(),
+      //Si escoje Movil
+      inputNombreMovil = $('#input-nombre-movil').val(),
+      inputMarcaMovil= $('#input-marca-movil').val(),
+      inputModeloMovil = $('#input-modelo-movil').val(),
+      inputActivoMovil = $('#input-activo-movil').val(),
+      selectSistemaMovil = $('#select-os-movil').val(),
+      selectEstiloMovil = $('#select-estilo-movil').val(),
+      selectSupportMovil = $('#select-soporte').val(),
+      //Si escoje otro tipo de activo
+      inputNombreOtro = $('#input-nombre-otro').val(),
+      inputMarcaOtro = $('#input-marca-otro').val(),
+      inputModeloOtro = $('#input-modelo-otro').val(),
+      inputActivoOtro = $('#input-activo-otro').val(),
+      textDescripcionOtro = $('#input-descriptivo-otro').val();
+      //Removemos primero si ya habia error en el formulario
+      $('.has-error').removeClass('has-error');
+   //Validaciones para selec de Tipo de Dispositivo
+   if (!selectTipoDispositivo.val()) {
+      result = false;
+      selectTipoDispositivo.closest('.form-group').addClass('has-error');
+    } else {
+      selectTipoDispositivo.closest('.form-group').addClass('has-success');
 
-
-    $('.has-error').removeClass('has-error');
-   //Validaciones para Nombres
-    if (!$inputNombreCompu.val() || $inputNombreCompu.val().length > 50) {
+    //Validaciones para Nombres
+    if (!inputNombreCompu.val() || inputNombreCompu.val().length > 50) {
       result = false;
-      $inputNombreCompu.closest('.form-group').addClass('has-error');
+      inputNombreCompu.closest('.form-group').addClass('has-error');
+    }else {
+      inputNombreCompu.closest('.form-group').addClass('has-success');
     }
-    if (!$inputNombreMovil.val() || $inputNombreMovil.val().length > 50) {
+    if (!inputNombreMovil.val() || inputNombreMovil.val().length > 50) {
       result = false;
-      $inputNombreMovil.closest('.form-group').addClass('has-error');
+      inputNombreMovil.closest('.form-group').addClass('has-error');
+    }else {
+      inputNombreMovil.closest('.form-group').addClass('has-success');
     }
-    if (!$inputNombreOtro.val() || $inputNombreOtro.val().length > 50) {
+    if (!inputNombreOtro.val() || inputNombreOtro.val().length > 50) {
       result = false;
-      $inputNombreOtro.closest('.form-group').addClass('has-error');
+      inputNombreOtro.closest('.form-group').addClass('has-error');
+    }else {
+      inputNombreOtro.closest('.form-group').addClass('has-success');
     }
     //Validaciones para Marca
-    if (!$inputMarcaCompu.val() || $inputMarcaCompu.val().length > 15) {
+    if (!inputMarcaCompu.val() || inputMarcaCompu.val().length > 15) {
       result = false;
-      $inputMarcaCompu.closest('.form-group').addClass('has-error');
+      inputMarcaCompu.closest('.form-group').addClass('has-error');
+    }else {
+      inputMarcaCompu.closest('.form-group').addClass('has-success');
     }
-    if (!$inputMarcaMovil.val() || $inputMarcaMovil.val().length > 15) {
+    if (!inputMarcaMovil.val() || inputMarcaMovil.val().length > 15) {
       result = false;
-      $inputMarcaMovil.closest('.form-group').addClass('has-error');
+      inputMarcaMovil.closest('.form-group').addClass('has-error');
+    }else {
+      inputMarcaMovil.closest('.form-group').addClass('has-success');
     }
-    if (!$inputMarcaOtro.val() || $inputMarcaOtro.val().length > 15) {
+    if (!inputMarcaOtro.val() || inputMarcaOtro.val().length > 15) {
       result = false;
-      $inputMarcaOtro.closest('.form-group').addClass('has-error');
+      inputMarcaOtro.closest('.form-group').addClass('has-error');
+    }else {
+      inputMarcaOtro.closest('.form-group').addClass('has-success');
     }
     //Validaciones para Modelo
-    if (!$inputModeloCompu.val() || $inputModeloCompu.val().length > 15) {
+    if (!inputModeloCompu.val() || inputModeloCompu.val().length > 15) {
       result = false;
-      $inputModeloCompu.closest('.form-group').addClass('has-error');
+      inputModeloCompu.closest('.form-group').addClass('has-error');
+    }else {
+      inputModeloCompu.closest('.form-group').addClass('has-success');
     }
-    if (!$inputModeloMovil.val() || $inputModeloMovil.val().length > 15) {
+    if (!inputModeloMovil.val() || inputModeloMovil.val().length > 15) {
       result = false;
-      $inputModeloMovil.closest('.form-group').addClass('has-error');
+      inputModeloMovil.closest('.form-group').addClass('has-error');
+    }else {
+      inputModeloMovil.closest('.form-group').addClass('has-success');
     }
-    if (!$inputModeloOtro.val() || $inputModeloOtro.val().length > 15) {
+    if (!inputModeloOtro.val() || inputModeloOtro.val().length > 15) {
       result = false;
-      $inputModeloOtro.closest('.form-group').addClass('has-error');
+      inputModeloOtro.closest('.form-group').addClass('has-error');
+    }else {
+      inputModeloOtro.closest('.form-group').addClass('has-success');
     }
     //Validaciones para Activos
-    if (!$inputActivoCompu.val()) {
+    if (!inputActivoCompu.val()) {
       result = false;
-      $inputActivoCompu.closest('.form-group').addClass('has-error');
+      inputActivoCompu.closest('.form-group').addClass('has-error');
+    }else {
+      inputActivoCompu.closest('.form-group').addClass('has-success');
     }
-    if (!$inputActivoMovil.val()) {
+    if (!inputActivoMovil.val()) {
       result = false;
-      $inputActivoMovil.closest('.form-group').addClass('has-error');
+      inputActivoMovil.closest('.form-group').addClass('has-error');
+    }else {
+      inputActivoMovil.closest('.form-group').addClass('has-success');
     }
-    if (!$inputActivoOtro.val()) {
+    if (!inputActivoOtro.val()) {
       result = false;
-      $inputActivoOtro.closest('.form-group').addClass('has-error');
+      inputActivoOtro.closest('.form-group').addClass('has-error');
+    }else {
+      inputActivoOtro.closest('.form-group').addClass('has-success');
     }
     //Validaciones para Selects Sistema
-    if (!$selectSistemaCompu.val()) {
+    if (!selectSistemaCompu.val()) {
       result = false;
-      $selectSistemaCompu.closest('.form-group').addClass('has-error');
+      selectSistemaCompu.closest('.form-group').addClass('has-error');
+    }else {
+      selectSistemaCompu.closest('.form-group').addClass('has-success');
     }
-    if (!$selectSistemaMovil.val()) {
+    if (!selectSistemaMovil.val()) {
       result = false;
-      $selectSistemaMovil.closest('.form-group').addClass('has-error');
+      selectSistemaMovil.closest('.form-group').addClass('has-error');
+    }else {
+      selectSistemaCompu.closest('.form-group').addClass('has-success');
     }
     //Validaciones para Selects Tipo
-    if (!$selecTipoCompu.val()) {
+    if (!selecTipoCompu.val()) {
       result = false;
-      $selecTipoCompu.closest('.form-group').addClass('has-error');
+      selecTipoCompu.closest('.form-group').addClass('has-error');
+    }else {
+      selecTipoCompu.closest('.form-group').addClass('has-success');
     }
-    if (!$selecTipoMovil.val()) {
+    if (!selecTipoMovil.val()) {
       result = false;
-      $selecTipoMovil.closest('.form-group').addClass('has-error');
-    } 
+      selecTipoMovil.closest('.form-group').addClass('has-error');
+    } else {
+      selecTipoMovil.closest('.form-group').addClass('has-success');
+    }
     //Validaciones para Pantallas
-    if (!$inputPantallaCompu.val()) {
+    if (!inputPantallaCompu.val()) {
       result = false;
-      $inputPantallaCompu.closest('.form-group').addClass('has-error');
+      inputPantallaCompu.closest('.form-group').addClass('has-error');
+    }else {
+      inputPantallaCompu.closest('.form-group').addClass('has-success');
     }
     //Validaciones para Soporte
-    if (!$selectSupportMovil.val()) {
+    if (!selectSupportMovil.val()) {
       result = false;
-      $selectSupportMovil.closest('.form-group').addClass('has-error');
-    } 
+      selectSupportMovil.closest('.form-group').addClass('has-error');
+    } else {
+      selectSupportMovil.closest('.form-group').addClass('has-success');
+    }
     //Validaciones para Otro Descripcion
-    if (!$textDescripcionOtro.val()) {
+    if (!textDescripcionOtro.val()) {
       result = false;
-      $textDescripcionOtro.closest('.form-group').addClass('has-error');
-    } 
+      textDescripcionOtro.closest('.form-group').addClass('has-error');
+    } else {
+      textDescripcionOtro.closest('.form-group').addClass('has-success');
+    }
     return result;
   };
 
-//Event Listeners
+//Event Listeners del formulario
 $(document).ready(function (){
 
-	$('#select-tipo').click( function(){
-		toggleSelectionForm();
-	});
-	$('.view').click(function(){
-        verDetalleArticulo();
-	});
-	$('#resetear').click(function(){
-        resetearInputs();
-	});
-    $('.restart').click(function(){
-        resetAllJavascript();
-    });
-    $('.volver').click(function(){
-        volverPantallaInicio();
-    });
-    $('.borrar-articulo').click(function(){
-        borrarObjeto();
-    });
-
-
+  
+  //Boton de submit el formulario
+  $('.submit').click( function(){
+    var nuevoArticulo;
+        if(validate()){
+        switch ($('#select-tipo').val()) {
+        case 'computadoras':
+          nuevoArticulo = new Computadora($('#input-nombre-compu').val(), $('#input-marca-compu').val(), $('#input-modelo-compu').val(),$('#input-activo-compu').val(), $('#select-os-compu').val(),$('#select-estilo-compu').val(), $('#input-pantallas-compu').val(), "Wi-Fi or LAN",'');
+          break;
+        case 'moviles':
+          nuevoArticulo = new Movil($('#input-nombre-movil').val(), $('#input-marca-movil').val(), $('#input-modelo-movil').val(), $('#input-activo-movil').val(), $('#select-os-movil').val(), $('#select-estilo-movil').val(), 1, $('#select-soporte').val(), '');
+          break;
+        case 'otros':
+          nuevoArticulo = new Otro($('#input-nombre-otro').val(), $('#input-marca-otro').val(), $('#input-modelo-otro').val(), $('#input-activo-otro').val(), '', '', '', '', $('#input-descriptivo-otro').val());
+          break;
+        default:
+        }
+    Articulos.push(nuevoArticulo);
+    refrescarArticulos();
+    }
+  }) 
 });
