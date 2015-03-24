@@ -26,6 +26,11 @@ var toggleSelectionForm = function(){
     }
 };
 
+var moverDetalleArticulo = function(){
+  $('#slider').animate({'margin-left': '-1148px'}, 500);
+};
+
+
 //Afecta el boton de volver en el detalle del articulo
 var volverPantallaInicio = function(){
   jQuery('#slider').animate({'margin-left': '0px'}, 500);
@@ -74,7 +79,6 @@ var verDetalleArticulo = function(articuloIndex){
     refrescarArticulos();
     volverPantallaInicio();
   });
-  $('#slider').animate({'margin-left': '-1148px'}, 500);
   $('#target').slideDown();
 
 }
@@ -106,7 +110,7 @@ var refrescarArticulos = function () {
 
 };
 
-$(document).ready(function () {
+/*$(document).ready(function () {
 
   $('#crear-vehiculo').click(function () {
     $('#form-vehiculo').stop().slideDown();
@@ -143,7 +147,7 @@ $(document).ready(function () {
   Articulos.push(new Camion('Mack', 'MRT450', 'Blanco', '67890', '8000cc')),
 
   refrescarTabla();
-});
+});*/
 
 
 
@@ -268,6 +272,7 @@ $(document).ready(function (){
 		toggleSelectionForm();
 	});
 	$('.view').click(function(){
+		moverDetalleArticulo();
         verDetalleArticulo();
 	});
 	$('#resetear').click(function(){
